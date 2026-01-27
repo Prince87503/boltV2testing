@@ -17,7 +17,7 @@ interface AdminUser {
   id: string
   full_name: string
   email: string
-  phone_number?: string
+  phone?: string
 }
 
 export function MarkAttendanceForm() {
@@ -78,11 +78,17 @@ export function MarkAttendanceForm() {
       setLoading(true)
       const { data, error } = await supabase
         .from('admin_users')
-        .select('id, full_name, email, phone_number')
+        .select('id, full_name, email, phone')
         .eq('id', adminUserId)
         .maybeSingle()
 
-      if (error || !data) {
+      if (error) {
+        console.error('Supabase error:', error)
+        setError(`Error: ${error.message}`)
+        return
+      }
+
+      if (!data) {
         setError('User not found')
         return
       }
