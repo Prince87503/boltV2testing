@@ -39,6 +39,7 @@ import { PayrollMIS } from '@/components/Pages/PayrollMIS'
 import { SalesReport } from '@/components/Pages/SalesReport'
 import { TasksMIS } from '@/components/Pages/TasksMIS'
 import { LeadsMIS } from '@/components/Pages/LeadsMIS'
+import { MarkAttendanceForm } from '@/components/Pages/MarkAttendanceForm'
 
 function ProtectedRoutes() {
   const { isAuthenticated, isLoading, login } = useAuth()
@@ -108,6 +109,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/partner" element={<PartnerPortal />} />
+            <Route path="/mark-attendance" element={<MarkAttendanceForm />} />
             <Route path="/*" element={<ProtectedRoutes />} />
           </Routes>
         </Router>
